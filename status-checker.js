@@ -28,7 +28,16 @@ export function checkRow(board, player, rowNumber) {
   return false;
 }
 
-function checkColumn(board, player, columnNumber) {}
+export function checkColumn(board, player, columnNumber) {
+  if (
+    board[0][columnNumber] === player &&
+    board[1][columnNumber] === player &&
+    board[2][columnNumber] === player
+  ) {
+    return true;
+  }
+  return false;
+}
 
 /*
     Given 2 parameters:
