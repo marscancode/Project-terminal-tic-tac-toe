@@ -1,4 +1,4 @@
-import { checkRow, checkColumn } from "../status-checker";
+import { checkRow, checkColumn, checkDiagonal } from "../status-checker";
 
 test("checkRow returns true when player X fills all three squares in a row", () => {
   const board = [
@@ -63,4 +63,24 @@ test("checkColumn returns true when O fills all three squares in column 1", () =
     ["X", "O", "O"],
   ];
   expect(checkColumn(board, "O", 1)).toBe(true);
+});
+
+test("checkDiagonal returns true when X fills the top-left to bottom-right diagonal", () => {
+  const board = [
+    ["X", "O", "_"],
+    ["O", "X", "_"],
+    ["_", "O", "X"],
+  ];
+
+  expect(checkDiagonal(board, "X")).toBe(true);
+});
+
+test("checkDiagonal returns true when O fills the top-right to bottom-left diagonal", () => {
+  const board = [
+    ["X", "_", "O"],
+    ["X", "O", "_"],
+    ["O", "_", "X"],
+  ];
+
+  expect(checkDiagonal(board, "O")).toBe(true);
 });
