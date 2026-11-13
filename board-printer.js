@@ -33,4 +33,12 @@ export function printBoard(board) {
         - return false if there are still moves that can be made
 */
 export function checkIfNoMovesLeft(board) {
+    for (const row of board){
+        for (const col of row){
+            if (col === "_"){
+                return false;
+            }
+        }
+    }
+    return true;
 }
