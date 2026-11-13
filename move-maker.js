@@ -15,20 +15,22 @@
             ['O', 'O', 'X']
         ];
 */
-const board = [
-  [1, 1],
-  [1, 2],
-  [1, 3],
-  [2, 1],
-  [2, 2],
-  [2, 3],
-  [3, 1],
-  [3, 2],
-  [3, 3],
-];
 
-function validateMove(move, board) {
-  return true;
+function validateMove(move) {
+  const parts = String(move).split(",");
+  if (parts.length !== 2) return false;
+
+  const row = Number(parts[0]);
+  const col = Number(parts[1]);
+
+  return (
+    Number.isInteger(row) &&
+    Number.isInteger(col) &&
+    row >= 1 &&
+    row <= 3 &&
+    col >= 1 &&
+    col <= 3
+  );
 }
 
 /*
@@ -42,6 +44,21 @@ function validateMove(move, board) {
             - Update the board with the player's value ('X' or 'O') in the correct position
             - Return true
 */
-export function makeMove(board, move, player) {
-  return false;
+function makeMove(board, move, player) {
+  if (!validateMove(move)) {
+    console.log("Try again...");
+    return false;
+  }
+
+  const [row, col] = String(move).split(",").map(Number);
+
+  if (board[row - 1][col - 1] !== "_") {
+    console.log("Try again...");
+    return false;
+  }
+
+  board[row - 1][col - 1] = player;
+  return true;
 }
+
+export { validateMove, makeMove };
